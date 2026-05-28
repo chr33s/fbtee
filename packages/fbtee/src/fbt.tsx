@@ -7,7 +7,7 @@ import type {
   PatternHash,
   PatternString,
 } from './CompilerTypes.ts';
-import FbtResult from './FbtResult.tsx';
+import type FbtResult from './FbtResult.tsx';
 import type {
   ParamVariationType,
   ValidPronounUsagesType,
@@ -233,7 +233,7 @@ export function createRuntime<P, T extends BaseResult | string>({
 }
 
 export default createRuntime<string | number, FbtResult>({
-  getResult: Hooks.getFbtResult,
+  getResult: Hooks.getFbtResult as ResolverFn<FbtResult>,
   param: (label: string, value: number | string, variations?: Variations) => {
     const substitution = { [label]: value };
     if (variations) {

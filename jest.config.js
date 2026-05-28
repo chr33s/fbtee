@@ -37,6 +37,16 @@ export default {
     },
     {
       displayName: 'fbtee',
+      moduleNameMapper: {
+        '^@testing-library/preact$':
+          '<rootDir>/node_modules/@testing-library/preact/dist/esm/index.mjs',
+        '^preact/hooks$': '<rootDir>/node_modules/preact/hooks/dist/hooks.mjs',
+        '^preact/jsx-runtime$':
+          '<rootDir>/node_modules/preact/jsx-runtime/dist/jsxRuntime.mjs',
+        '^preact/test-utils$':
+          '<rootDir>/node_modules/preact/test-utils/dist/testUtils.mjs',
+        '^preact$': '<rootDir>/node_modules/preact/dist/preact.mjs',
+      },
       modulePaths: ['<rootDir>/packages/fbtee/src'],
       roots: ['<rootDir>/packages/fbtee/src'],
       testEnvironment: 'jsdom',
