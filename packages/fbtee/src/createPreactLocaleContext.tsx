@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 import { createContext, Fragment } from 'preact';
 import type { ComponentChildren, Context as PreactContext } from 'preact';
-import { useCallback, useContext, useState } from 'preact/hooks';
+import { useContext, useState } from 'preact/hooks';
 import Hooks from './Hooks.tsx';
 import IntlVariations from './IntlVariations.tsx';
 import setupLocaleContext, {
@@ -73,29 +73,23 @@ export default function createLocaleContext(props: LocaleContextProps) {
     const [localeChangeIsPending, setLocaleChangeIsPending] = useState(false);
     const [gender, updateGender] = useState(initialGender);
 
-    const changeLocale = useCallback(
-      (newLocale: string) => {
-        if (newLocale === locale) {
-          return;
-        }
+    const changeLocale = (newLocale: string) => {
+      if (newLocale === locale) {
+        return;
+      }
 
-        setLocaleChangeIsPending(true);
-        void setLocale(newLocale)
-          .then(updateLocale)
-          .finally(() => setLocaleChangeIsPending(false));
-      },
-      [locale],
-    );
+      setLocaleChangeIsPending(true);
+      void setLocale(newLocale)
+        .then(updateLocale)
+        .finally(() => setLocaleChangeIsPending(false));
+    };
 
-    const changeGender = useCallback(
-      (newGender: Gender) => {
-        if (newGender !== gender) {
-          const gender = setGender(newGender);
-          updateGender(gender);
-        }
-      },
-      [gender],
-    );
+    const changeGender = (newGender: Gender) => {
+      if (newGender !== gender) {
+        const resolvedGender = setGender(newGender);
+        updateGender(resolvedGender);
+      }
+    };
 
     return (
       <Context.Provider
