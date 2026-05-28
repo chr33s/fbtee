@@ -3,7 +3,6 @@ import type {
   PatternHash,
   PatternString,
 } from './CompilerTypes.ts';
-import FbtResult from './FbtResult.tsx';
 import type { FbtTableArg } from './FbtTableAccessor.tsx';
 import type {
   BaseResult,
@@ -87,7 +86,7 @@ export type FbtImpressionOptions = {
 export type Hooks = Partial<{
   errorListener: (context: FbtErrorContext) => IFbtErrorListener | null;
   getFbsResult: ResolverFn<PlainStringResult>;
-  getFbtResult: ResolverFn<FbtResult>;
+  getFbtResult: ResolverFn<BaseResult>;
   getTranslatedInput: (input: FbtRuntimeCallInput) => FbtTranslatedInput | null;
   getViewerContext: () => typeof IntlViewerContext;
 }>;
@@ -115,7 +114,7 @@ export default {
     contents: NestedFbtContentItems,
     hashKey: PatternHash | null | undefined,
     errorListener: IFbtErrorListener | null,
-  ): FbtResult {
+  ): BaseResult {
     const { getFbtResult } = _registrations;
     if (!getFbtResult) {
       throw new Error(`Hooks: 'getFbtResult' is not registered`);

@@ -232,7 +232,7 @@ export function createRuntime<P, T extends BaseResult | string>({
   );
 }
 
-export default createRuntime<string | number, FbtResult>({
+export default createRuntime<string | number, BaseResult>({
   getResult: Hooks.getFbtResult,
   param: (label: string, value: number | string, variations?: Variations) => {
     const substitution = { [label]: value };
