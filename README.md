@@ -114,6 +114,16 @@ React TypeScript projects should include the JSX declarations once in a global t
 /// <reference types="fbtee/ReactTypes.d.ts" />
 ```
 
+Preact TypeScript projects using the native Preact runtime should use the Preact declarations and import fbtee bindings from `fbtee/preact`:
+
+```tsx
+/// <reference types="fbtee/PreactTypes.d.ts" />
+
+import { fbt, setupFbtee } from 'fbtee/preact';
+
+setupFbtee({ translations });
+```
+
 ## Writing Strings
 
 Every user-facing string should be wrapped in `<fbt>`, `fbt()`, or `fbs()`. Descriptions are required because they are the translator's context.

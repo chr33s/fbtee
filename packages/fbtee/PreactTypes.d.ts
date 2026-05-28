@@ -1,9 +1,9 @@
+import type { ComponentChild, VNode } from 'preact';
 import {
   FbtConjunction,
   FbtDelimiter,
   FbtWithoutString,
 } from './lib/index-preact.d.mts';
-import type { ComponentChild, VNode } from 'preact';
 
 enum IntlVariations {
   GENDER_MALE = 1,
@@ -102,26 +102,24 @@ type PropsWithStringChild<P> = P & {
   children?: string | Array<string> | undefined;
 };
 
-type FbteeIntrinsicElements = {
-  fbs: PropsWithChildren<FbtProps>;
-  'fbs:enum': FbtEnumProps;
-  'fbs:name': PropsWithStringChild<FbtNameProps>;
-  'fbs:param': PropsWithStringChild<FbtParamProps>;
-  'fbs:plural': PropsWithStringChild<FbtPluralProps>;
-  'fbs:pronoun': FbtPronounProps;
-  'fbs:same-param': FbtSameParamProps;
-  fbt: PropsWithChildren<FbtProps>;
-  'fbt:enum': FbtEnumProps;
-  'fbt:list': FbtListProps;
-  'fbt:name': PropsWithChildren<FbtNameProps>;
-  'fbt:param': PropsWithChildren<FbtParamProps>;
-  'fbt:plural': PropsWithChildren<FbtPluralProps>;
-  'fbt:pronoun': FbtPronounProps;
-  'fbt:same-param': FbtSameParamProps;
-};
-
 declare module 'preact' {
   namespace JSX {
-    interface IntrinsicElements extends FbteeIntrinsicElements {}
+    interface IntrinsicElements {
+      fbs: PropsWithChildren<FbtProps>;
+      'fbs:enum': FbtEnumProps;
+      'fbs:name': PropsWithStringChild<FbtNameProps>;
+      'fbs:param': PropsWithStringChild<FbtParamProps>;
+      'fbs:plural': PropsWithStringChild<FbtPluralProps>;
+      'fbs:pronoun': FbtPronounProps;
+      'fbs:same-param': FbtSameParamProps;
+      fbt: PropsWithChildren<FbtProps>;
+      'fbt:enum': FbtEnumProps;
+      'fbt:list': FbtListProps;
+      'fbt:name': PropsWithChildren<FbtNameProps>;
+      'fbt:param': PropsWithChildren<FbtParamProps>;
+      'fbt:plural': PropsWithChildren<FbtPluralProps>;
+      'fbt:pronoun': FbtPronounProps;
+      'fbt:same-param': FbtSameParamProps;
+    }
   }
 }

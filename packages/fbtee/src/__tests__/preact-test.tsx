@@ -12,12 +12,17 @@ import {
 import fbtInternal from '../fbt.tsx';
 import {
   createLocaleContext,
+  fbt,
   PreactFbtResult,
   setupFbtee,
   useLocaleContext,
 } from '../index-preact.tsx';
 
 beforeEach(() => {
+  // Ensure the Preact entrypoint binding is used for transformed <fbt> JSX.
+  // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
+  fbt;
+
   setupFbtee({
     translations: {},
   });
@@ -27,7 +32,8 @@ test('renders rich fbt content as native Preact VNodes', () => {
   const { container } = render(
     <div>
       <fbt desc="Greeting with rich content">
-        Hello <fbt:param name="name">
+        Hello{' '}
+        <fbt:param name="name">
           <strong>Preact</strong>
         </fbt:param>
       </fbt>
@@ -40,6 +46,7 @@ test('renders rich fbt content as native Preact VNodes', () => {
 
 test('uses PreactFbtResult for runtime rich content', () => {
   const result = fbtInternal._('Hello {name}', [
+    // @ts-expect-error Testing renderer content in the internal runtime.
     fbtInternal._param('name', <strong>Preact</strong>),
   ]);
 
@@ -57,7 +64,9 @@ test('retains keyed Preact child identity when sentence order changes', () => {
         B: '{tokenB} is after {tokenA}',
       },
       [
+        // @ts-expect-error Testing renderer content in the internal runtime.
         fbtInternal._param('tokenA', childA),
+        // @ts-expect-error Testing renderer content in the internal runtime.
         fbtInternal._param('tokenB', childB),
         fbtInternal._enum(value, { A: 'is before', B: 'is after' }),
       ],

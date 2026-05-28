@@ -2,9 +2,9 @@ import type { PatternHash } from './CompilerTypes.ts';
 import FbtTranslations, { TranslationDictionary } from './FbtTranslations.tsx';
 import getFbsResult from './getFbsResult.tsx';
 import Hook, { Hooks } from './Hooks.tsx';
+import PreactFbtResult from './PreactFbtResult.tsx';
 import type { IFbtErrorListener, NestedFbtContentItems } from './Types.ts';
 import IntlViewerContext from './ViewerContext.tsx';
-import PreactFbtResult from './PreactFbtResult.tsx';
 
 const hasWindow = typeof window !== 'undefined';
 

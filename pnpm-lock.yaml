@@ -280,6 +280,9 @@ importers:
       invariant:
         specifier: ^2.2.4
         version: 2.2.4
+      preact:
+        specifier: ^10.0.0
+        version: 10.29.2
       react:
         specifier: ^19.1.1
         version: 19.2.5

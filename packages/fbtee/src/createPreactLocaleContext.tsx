@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
 import { createContext, Fragment } from 'preact';
+import type { ComponentChildren, Context as PreactContext } from 'preact';
 import { useCallback, useContext, useState } from 'preact/hooks';
 import Hooks from './Hooks.tsx';
 import IntlVariations from './IntlVariations.tsx';
@@ -22,8 +23,8 @@ const hasWindow = typeof window !== 'undefined';
 export const Context = (() =>
   hasWindow
     ? createContext<LocaleContext>(null as unknown as LocaleContext)
-    : ((({ children }: { children?: preact.ComponentChildren }) =>
-        children) as unknown as preact.Context<LocaleContext>))();
+    : ((({ children }: { children?: ComponentChildren }) =>
+        children) as unknown as PreactContext<LocaleContext>))();
 
 export const useLocaleContext = (() =>
   hasWindow
@@ -66,7 +67,7 @@ export default function createLocaleContext(props: LocaleContextProps) {
   return function LocaleContext({
     children,
   }: {
-    children?: preact.ComponentChildren;
+    children?: ComponentChildren;
   }) {
     const [locale, updateLocale] = useState(getLocale());
     const [localeChangeIsPending, setLocaleChangeIsPending] = useState(false);
